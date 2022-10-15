@@ -1,20 +1,50 @@
-import { createSignal, Show } from "solid-js"
+import { createSignal, onCleanup, onMount } from "solid-js"
 import { render } from "solid-js/web"
-import { Bottomsheet, Sidesheet } from "../lib"
+import { Bottomsheet, BottomsheetState, Sidesheet, SidesheetState } from "../lib"
 
 //// const mq = window.matchMedia("(max-width: 500px)")
 //// const [responsive, setResponsive] = createSignal(mq.matches)
 //// mq.addEventListener("change", e => setResponsive(e.matches))
 
 function App() {
+	const [bottomsheetState, setBottomsheetState] = createSignal<BottomsheetState>("closed")
+	const [sidesheetState, setSidesheetState] = createSignal<SidesheetState>("closed")
+
+	onMount(() => {
+		function handleKeyDown(e: KeyboardEvent) {
+			if (e.key === "b") {
+				if (bottomsheetState() === "closed") {
+					setBottomsheetState("open")
+				} else if (bottomsheetState() === "open") {
+					setBottomsheetState("closed")
+				}
+			}
+		}
+		window.addEventListener("keydown", handleKeyDown, false)
+		onCleanup(() => window.removeEventListener("keydown", handleKeyDown, false))
+	})
+
+	onMount(() => {
+		function handleKeyDown(e: KeyboardEvent) {
+			if (e.key === "s") {
+				if (sidesheetState() === "closed") {
+					setSidesheetState("open")
+				} else if (sidesheetState() === "open") {
+					setSidesheetState("expanded")
+				} else if (sidesheetState() === "expanded") {
+					setSidesheetState("closed")
+				}
+			}
+		}
+		window.addEventListener("keydown", handleKeyDown, false)
+		onCleanup(() => window.addEventListener("keydown", handleKeyDown, false))
+	})
+
 	return <>
-		{/* <Show when={responsive()}>
-			<Bottomsheet initialState="closed">
-				<div>Hello, world!</div>
-			</Bottomsheet>
-		</Show> */}
-		{/* <Show when={!responsive()}> */}
-		<Sidesheet initialState="closed">
+		<Bottomsheet state={bottomsheetState()} setState={setBottomsheetState}>
+			<div>Hello, world!</div>
+		</Bottomsheet>
+		<Sidesheet state={sidesheetState()} setState={setSidesheetState}>
 			<div>
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
@@ -23,7 +53,6 @@ function App() {
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 			</div>
 		</Sidesheet>
-		{/* </Show> */}
 	</>
 }
 

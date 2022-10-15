@@ -1,15 +1,22 @@
 import "./bottomsheet.css"
 
-import { batch, createSignal, DEV, onCleanup, onMount, ParentProps } from "solid-js"
+import { batch, createEffect, createSignal, on, onCleanup, onMount, ParentProps, Setter } from "solid-js"
 import { cx, only, round } from "./utils"
 
 export type BottomsheetState = "closed" | "open"
 
-export function Bottomsheet(props: ParentProps<{ initialState: BottomsheetState }>) {
+export function Bottomsheet(props: ParentProps<{
+	initialState: BottomsheetState // Uncontrolled API
+} | {
+	state:    BottomsheetState // Controlled API
+	setState: Setter<BottomsheetState>
+}>) {
 	const [backdrop, setBackdrop] = createSignal<HTMLElement>()
 	const [draggable, setDraggable] = createSignal<HTMLElement>()
 
-	const [state, setState] = createSignal(props.initialState ?? "open")
+	const [state, setState] = "initialState" in props
+		? createSignal(props.initialState ?? "closed")
+		: [() => props.state, props.setState]
 	const [pointerDown, setPointerDown] = createSignal<undefined | true>()
 	const [pointerOffset, setPointerOffset] = createSignal<number>()
 	const [p1, setP1] = createSignal<number>()
@@ -28,21 +35,13 @@ export function Bottomsheet(props: ParentProps<{ initialState: BottomsheetState 
 		})
 	}
 
-	if (DEV) {
-		document.addEventListener("keydown", e => {
-			if (e.key !== "d") { return }
-			if (state() === "closed") {
-				batch(() => {
-					setState("open")
-					setTransition(true)
-				})
-			} else if (state() === "open") {
-				batch(() => {
-					setState("closed")
-					setTransition(true)
-				})
+	// Synchronize state=* and transition=true
+	if (!("initialState" in props)) {
+		createEffect(on(state, () => {
+			if (!transition()) {
+				setTransition(true)
 			}
-		})
+		}, { defer: true }))
 	}
 
 	onMount(() => {
@@ -86,12 +85,12 @@ export function Bottomsheet(props: ParentProps<{ initialState: BottomsheetState 
 		document.addEventListener("pointerdown",  handlePointerDown, false)
 		document.addEventListener("pointermove",  handlePointerMove, false)
 		document.addEventListener("pointerup",    handlePointerUp,   false)
-		document.addEventListener("pointerleave", handlePointerUp,   false)
+		//// document.addEventListener("pointerleave", handlePointerUp,   false)
 		onCleanup(() => {
 			document.removeEventListener("pointerdown",  handlePointerDown, false)
 			document.removeEventListener("pointermove",  handlePointerMove, false)
 			document.removeEventListener("pointerup",    handlePointerUp,   false)
-			document.removeEventListener("pointerleave", handlePointerUp,   false)
+			//// document.removeEventListener("pointerleave", handlePointerUp,   false)
 		})
 	})
 
