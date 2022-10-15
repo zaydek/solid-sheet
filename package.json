@@ -1,0 +1,27 @@
+{
+	"name": "solid-sheet",
+	"description": "Responsive Bottomsheet and Sidesheet Components for SolidJS",
+	"license": "MIT",
+	"version": "0.0.3",
+	"main": "lib/index.tsx",
+	"exports": {
+		".": "./lib/index.tsx",
+		"./bottomsheet.css": "./lib/bottomsheet.css",
+		"./sidesheet.css": "./lib/sidesheet.css"
+	},
+	"scripts": {
+		"start": "vite",
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"devDependencies": {
+		"typescript": "^4.8.2",
+		"vite": "^3.0.9",
+		"vite-plugin-solid": "^2.3.0"
+	},
+	"dependencies": {
+		"solid-js": "^1.5.1",
+		"solid-sheet": "latest"
+	}
+}

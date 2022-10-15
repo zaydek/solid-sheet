@@ -1,0 +1,25 @@
+:root {
+	/* Helpers */
+	--solid-sheet-full: 1000px;
+
+	/* Bottomsheet-only */
+	--solid-sheet-bottomsheet-draggable-height: 40px;
+	--solid-sheet-bottomsheet-z-index: 100;
+
+	/* Sidesheet-only */
+	--solid-sheet-sidesheet-draggable-width: 40px;
+	--solid-sheet-sidesheet-z-index: 100;
+
+	/* Shared */
+	--solid-sheet-backdrop-background-color: hsl(0 0% 0% / 25%);
+	--solid-sheet-card-background-color: hsl(0 0% 100%);
+	--solid-sheet-card-border-radius: 24px 24px 0 0;
+	--solid-sheet-card-box-shadow: 0 0 0 4px hsl(0 0% 0% / 25%);
+	--solid-sheet-card-hairline-background-color: hsl(0 0% 90%);
+	--solid-sheet-drag-indicator-background-color: hsl(0 0% 50%);
+	--solid-sheet-drag-indicator-is-active-background-color: hsl(0 0% 25%);
+	--solid-sheet-drag-indicator-size-aspect-ratio: 12;
+	--solid-sheet-drag-indicator-size: 4px;
+	--solid-sheet-transition-duration: 600ms;
+	--solid-sheet-transition-timing-function: cubic-bezier(0, 1, 0.25, 1);
+}

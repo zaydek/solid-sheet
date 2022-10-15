@@ -1,0 +1,86 @@
+.solid-sheet-bottomsheet-backdrop {
+	position: fixed;
+	z-index: calc(var(--solid-sheet-bottomsheet-z-index) - 10);
+	inset: 0;
+}
+.solid-sheet-bottomsheet-backdrop:has(+ .solid-sheet-bottomsheet.is-closed) { background-color: transparent; }
+.solid-sheet-bottomsheet-backdrop:has(+ .solid-sheet-bottomsheet.is-open)   { background-color: hsl(0 0% 0% / 25%); }
+.solid-sheet-bottomsheet-backdrop:has(+ .solid-sheet-bottomsheet.is-transition) {
+	transition: background-color var(--solid-sheet-transition-duration) var(--solid-sheet-transition-timing-function);
+}
+
+/**************************************/
+
+.solid-sheet-bottomsheet {
+	/* Runtime values */
+	--solid-sheet-bottomsheet-screen-h: var(--solid-sheet-screen-h);
+	--solid-sheet-bottomsheet-translate-y: 0px;
+	--solid-sheet-bottomsheet-drag-translate-y: 0px;
+
+	position: fixed;
+	z-index: var(--solid-sheet-bottomsheet-z-index);
+	inset: 0 0 auto 0;
+	min-height: calc(var(--solid-sheet-screen-h) - var(--solid-sheet-bottomsheet-draggable-height) * 2);
+	border-radius: calc(var(--solid-sheet-bottomsheet-draggable-height) / 2) calc(var(--solid-sheet-bottomsheet-draggable-height) / 2) 0 0;
+	background-color: var(--solid-sheet-card-background-color);
+	box-shadow: var(--solid-sheet-card-box-shadow);
+	transform: translateY(calc(var(--solid-sheet-bottomsheet-screen-h) + var(--solid-sheet-bottomsheet-translate-y) + var(--solid-sheet-bottomsheet-drag-translate-y)));
+	will-change: transform;
+}
+.solid-sheet-bottomsheet.is-closed {
+	--solid-sheet-bottomsheet-screen-h: var(--solid-sheet-screen-h);
+	--solid-sheet-bottomsheet-translate-y: -1 * var(--solid-sheet-bottomsheet-draggable-height);
+}
+.solid-sheet-bottomsheet.is-open   {
+	--solid-sheet-bottomsheet-screen-h: 0px;
+	--solid-sheet-bottomsheet-translate-y: var(--solid-sheet-bottomsheet-draggable-height);
+}
+.solid-sheet-bottomsheet.is-transition {
+	transition: transform var(--solid-sheet-transition-duration) var(--solid-sheet-transition-timing-function);
+}
+
+/**************************************/
+
+.solid-sheet-bottomsheet-draggable {
+	height: var(--solid-sheet-bottomsheet-draggable-height);
+
+	/* Flow */
+	display: grid;
+	place-items: center;
+}
+.solid-sheet-bottomsheet-draggable:hover { cursor: grab; }
+:root:has(.solid-sheet-bottomsheet-draggable:active) { cursor: grab; }
+
+/**************************************/
+
+.solid-sheet-bottomsheet-drag-indicator {
+	height: var(--solid-sheet-drag-indicator-size);
+	aspect-ratio: var(--solid-sheet-drag-indicator-size-aspect-ratio);
+	border-radius: var(--solid-sheet-full);
+	background-color: var(--solid-sheet-drag-indicator-background-color);
+}
+.solid-sheet-bottomsheet-draggable:active .solid-sheet-bottomsheet-drag-indicator {
+	background-color: var(--solid-sheet-drag-indicator-is-active-background-color);
+}
+
+/**************************************/
+
+.solid-sheet-bottomsheet-card-hairline {
+	height: 1px;
+	background-color: var(--solid-sheet-card-hairline-background-color);
+}
+
+/**************************************/
+
+/* COMPAT/Safari: Safari doesn’t disable inert unless there is some CSS
+listening to the presence of the property */
+.solid-sheet-bottomsheet-content[inert] { content: ""; }
+.solid-sheet-bottomsheet-content {
+	height: calc(
+		var(--solid-sheet-screen-h) -
+		var(--solid-sheet-bottomsheet-draggable-height) - /* .solid-sheet-bottomsheet-backdrop */
+		1px -                                             /* <hr> */
+		var(--solid-sheet-bottomsheet-draggable-height)
+	);
+	overflow-y: auto;
+}
