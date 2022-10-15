@@ -77,7 +77,7 @@ listening to the presence of the property */
 .bottomsheet-content[inert] { content: ""; }
 .bottomsheet-content {
 	height: calc(
-		var(--__screen-h) -
+		var(--screen-h) -
 		var(--sheet-draggable-size) -
 		1px -
 		var(--sheet-draggable-size)
