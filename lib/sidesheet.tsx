@@ -113,15 +113,15 @@ export function Sidesheet(props: ParentProps<{ initialState?: SidesheetState }>)
 	return <>
 		<div
 			ref={setBackdrop}
-			class="solid-sheet-sidesheet-backdrop"
+			class="sidesheet-backdrop"
 			onClick={e => forceState("closed")}
 			// @ts-expect-error
 			inert={only(state() === "closed" || state() === "open")}
 		></div>
 		<div
-			class={cx(`solid-sheet-sidesheet is-${state()} ${transition() ? "is-transition" : ""}`)}
+			class={cx(`sidesheet is-${state()} ${transition() ? "is-transition" : ""}`)}
 			style={{
-				"--solid-sheet-sidesheet-drag-translate-x":
+				"--__drag-translate-x":
 					(!pointerOffset() || !p1() || !p2())
 						? "0px"
 						: `${(p2()! + pointerOffset()!) - (p1()! + pointerOffset()!)}px`,
@@ -130,7 +130,7 @@ export function Sidesheet(props: ParentProps<{ initialState?: SidesheetState }>)
 		>
 			<div
 				ref={setDraggable}
-				class="solid-sheet-sidesheet-draggable"
+				class="sidesheet-draggable"
 				onKeyDown={e => {
 					if (e.key === "ArrowLeft") {
 						if (state() === "closed") {
@@ -148,11 +148,11 @@ export function Sidesheet(props: ParentProps<{ initialState?: SidesheetState }>)
 				}}
 				tabIndex={0}
 			>
-				<div class="solid-sheet-sidesheet-drag-indicator"></div>
+				<div class="sidesheet-drag-indicator"></div>
 			</div>
 			{/* @ts-expect-error */}
-			<div class="solid-sheet-sidesheet-card" inert={only(state() === "closed")}>
-				<div class="solid-sheet-sidesheet-content">
+			<div class="sidesheet-card" inert={only(state() === "closed")}>
+				<div class="sidesheet-content">
 					{props.children}
 				</div>
 			</div>

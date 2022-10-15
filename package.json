@@ -4,11 +4,6 @@
 	"license": "MIT",
 	"version": "0.0.3",
 	"main": "lib/index.tsx",
-	"exports": {
-		".": "./lib/index.tsx",
-		"./bottomsheet.css": "./lib/bottomsheet.css",
-		"./sidesheet.css": "./lib/sidesheet.css"
-	},
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",

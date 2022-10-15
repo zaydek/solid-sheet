@@ -1,86 +1,86 @@
-.solid-sheet-bottomsheet-backdrop {
+.bottomsheet-backdrop {
 	position: fixed;
-	z-index: calc(var(--solid-sheet-bottomsheet-z-index) - 10);
+	z-index: calc(var(--sheet-z-index) - 10);
 	inset: 0;
 }
-.solid-sheet-bottomsheet-backdrop:has(+ .solid-sheet-bottomsheet.is-closed) { background-color: transparent; }
-.solid-sheet-bottomsheet-backdrop:has(+ .solid-sheet-bottomsheet.is-open)   { background-color: hsl(0 0% 0% / 25%); }
-.solid-sheet-bottomsheet-backdrop:has(+ .solid-sheet-bottomsheet.is-transition) {
-	transition: background-color var(--solid-sheet-transition-duration) var(--solid-sheet-transition-timing-function);
+.bottomsheet-backdrop:has(+ .bottomsheet.is-closed) { background-color: transparent; }
+.bottomsheet-backdrop:has(+ .bottomsheet.is-open)   { background-color: hsl(0 0% 0% / 25%); }
+.bottomsheet-backdrop:has(+ .bottomsheet.is-transition) {
+	transition: background-color var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
 
 /**************************************/
 
-.solid-sheet-bottomsheet {
+.bottomsheet {
 	/* Runtime values */
-	--solid-sheet-bottomsheet-screen-h: var(--solid-sheet-screen-h);
-	--solid-sheet-bottomsheet-translate-y: 0px;
-	--solid-sheet-bottomsheet-drag-translate-y: 0px;
+	--__screen-h: var(--screen-h);
+	--__translate-y: 0px;
+	--__drag-translate-y: 0px;
 
 	position: fixed;
-	z-index: var(--solid-sheet-bottomsheet-z-index);
+	z-index: var(--sheet-z-index);
 	inset: 0 0 auto 0;
-	min-height: calc(var(--solid-sheet-screen-h) - var(--solid-sheet-bottomsheet-draggable-height) * 2);
-	border-radius: calc(var(--solid-sheet-bottomsheet-draggable-height) / 2) calc(var(--solid-sheet-bottomsheet-draggable-height) / 2) 0 0;
-	background-color: var(--solid-sheet-card-background-color);
-	box-shadow: var(--solid-sheet-card-box-shadow);
-	transform: translateY(calc(var(--solid-sheet-bottomsheet-screen-h) + var(--solid-sheet-bottomsheet-translate-y) + var(--solid-sheet-bottomsheet-drag-translate-y)));
+	height: calc(var(--screen-h) - var(--sheet-draggable-size));
+	border-radius: calc(var(--sheet-draggable-size) / 2) calc(var(--sheet-draggable-size) / 2) 0 0;
+	background-color: var(--sheet-card-background-color);
+	box-shadow: var(--sheet-card-box-shadow);
+	transform: translateY(calc(var(--__screen-h) + var(--__translate-y) + var(--__drag-translate-y)));
 	will-change: transform;
 }
-.solid-sheet-bottomsheet.is-closed {
-	--solid-sheet-bottomsheet-screen-h: var(--solid-sheet-screen-h);
-	--solid-sheet-bottomsheet-translate-y: -1 * var(--solid-sheet-bottomsheet-draggable-height);
+.bottomsheet.is-closed {
+	--__screen-h: var(--screen-h);
+	--__translate-y: -1 * var(--sheet-draggable-size);
 }
-.solid-sheet-bottomsheet.is-open   {
-	--solid-sheet-bottomsheet-screen-h: 0px;
-	--solid-sheet-bottomsheet-translate-y: var(--solid-sheet-bottomsheet-draggable-height);
+.bottomsheet.is-open   {
+	--__screen-h: 0px;
+	--__translate-y: var(--sheet-draggable-size);
 }
-.solid-sheet-bottomsheet.is-transition {
-	transition: transform var(--solid-sheet-transition-duration) var(--solid-sheet-transition-timing-function);
+.bottomsheet.is-transition {
+	transition: transform var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
 
 /**************************************/
 
-.solid-sheet-bottomsheet-draggable {
-	height: var(--solid-sheet-bottomsheet-draggable-height);
+.bottomsheet-draggable {
+	height: var(--sheet-draggable-size);
 
 	/* Flow */
 	display: grid;
 	place-items: center;
 }
-.solid-sheet-bottomsheet-draggable:hover { cursor: grab; }
-:root:has(.solid-sheet-bottomsheet-draggable:active) { cursor: grab; }
+.bottomsheet-draggable:hover { cursor: grab; }
+:root:has(.bottomsheet-draggable:active) { cursor: grab; }
 
 /**************************************/
 
-.solid-sheet-bottomsheet-drag-indicator {
-	height: var(--solid-sheet-drag-indicator-size);
-	aspect-ratio: var(--solid-sheet-drag-indicator-size-aspect-ratio);
-	border-radius: var(--solid-sheet-full);
-	background-color: var(--solid-sheet-drag-indicator-background-color);
+.bottomsheet-drag-indicator {
+	height: var(--sheet-drag-indicator-size);
+	aspect-ratio: var(--sheet-drag-indicator-size-aspect-ratio);
+	border-radius: 1000px;
+	background-color: var(--sheet-drag-indicator-background-color);
 }
-.solid-sheet-bottomsheet-draggable:active .solid-sheet-bottomsheet-drag-indicator {
-	background-color: var(--solid-sheet-drag-indicator-is-active-background-color);
+.bottomsheet-draggable:active .bottomsheet-drag-indicator {
+	background-color: var(--sheet-drag-indicator-is-active-background-color);
 }
 
 /**************************************/
 
-.solid-sheet-bottomsheet-card-hairline {
+.bottomsheet-card-hairline {
 	height: 1px;
-	background-color: var(--solid-sheet-card-hairline-background-color);
+	background-color: var(--sheet-card-hairline-background-color);
 }
 
 /**************************************/
 
 /* COMPAT/Safari: Safari doesn’t disable inert unless there is some CSS
 listening to the presence of the property */
-.solid-sheet-bottomsheet-content[inert] { content: ""; }
-.solid-sheet-bottomsheet-content {
+.bottomsheet-content[inert] { content: ""; }
+.bottomsheet-content {
 	height: calc(
-		var(--solid-sheet-screen-h) -
-		var(--solid-sheet-bottomsheet-draggable-height) - /* .solid-sheet-bottomsheet-backdrop */
-		1px -                                             /* <hr> */
-		var(--solid-sheet-bottomsheet-draggable-height)
+		var(--__screen-h) -
+		var(--sheet-draggable-size) -
+		1px -
+		var(--sheet-draggable-size)
 	);
 	overflow-y: auto;
 }

@@ -11,19 +11,19 @@ export function cx(...args: any[]) {
 	return className
 }
 
-export function createScreenVars({ prefix, delimiter }: { prefix: string, delimiter: string } = { prefix: "", delimiter: "" }) {
+export function createScreenVars() {
 	createRoot(dispose => {
 		onMount(() => {
 			function handleResize(e?: UIEvent) {
-				const { innerWidth: screenX, innerHeight: screenY } = window
-				document.documentElement.style.setProperty(`--${prefix}${delimiter}screen-h`, `${screenY}px`)
-				document.documentElement.style.setProperty(`--${prefix}${delimiter}screen-w`, `${screenX}px`)
+				const { innerHeight: screenH, innerWidth: screenW } = window
+				document.documentElement.style.setProperty("--screen-h", `${screenH}px`)
+				document.documentElement.style.setProperty("--screen-w", `${screenW}px`)
 			}
 			handleResize()
 			window.addEventListener("resize", handleResize, false)
 			onCleanup(() => {
-				document.documentElement.style.setProperty(`--${prefix}${delimiter}screen-h`, "")
-				document.documentElement.style.setProperty(`--${prefix}${delimiter}screen-w`, "")
+				document.documentElement.style.setProperty("--screen-h", "")
+				document.documentElement.style.setProperty("--screen-w", "")
 				if (!document.documentElement.style.length) {
 					document.documentElement.removeAttribute("style")
 				}

@@ -98,15 +98,15 @@ export function Bottomsheet(props: ParentProps<{ initialState: BottomsheetState 
 	return <>
 		<div
 			ref={setBackdrop}
-			class="solid-sheet-bottomsheet-backdrop"
+			class="bottomsheet-backdrop"
 			onClick={e => forceState("closed")}
 			// @ts-expect-error
 			inert={only(state() === "closed")}
 		></div>
 		<div
-			class={cx(`solid-sheet-bottomsheet is-${state()} ${transition() ? "is-transition" : ""}`)}
+			class={cx(`bottomsheet is-${state()} ${transition() ? "is-transition" : ""}`)}
 			style={{
-				"--solid-sheet-bottomsheet-drag-translate-y":
+				"--__drag-translate-y":
 					(!pointerOffset() || !p1() || !p2())
 						? "0px"
 						: `${(p2()! + pointerOffset()!) - (p1()! + pointerOffset()!)}px`,
@@ -115,7 +115,7 @@ export function Bottomsheet(props: ParentProps<{ initialState: BottomsheetState 
 		>
 			<div
 				ref={setDraggable}
-				class="solid-sheet-bottomsheet-draggable"
+				class="bottomsheet-draggable"
 				onKeyDown={e => {
 					if (e.key === "ArrowUp") {
 						forceState("open")
@@ -125,11 +125,11 @@ export function Bottomsheet(props: ParentProps<{ initialState: BottomsheetState 
 				}}
 				tabIndex={0}
 			>
-				<div class="solid-sheet-bottomsheet-drag-indicator"></div>
+				<div class="bottomsheet-drag-indicator"></div>
 			</div>
-			<div class="solid-sheet-bottomsheet-card-hairline"></div>
+			<div class="bottomsheet-card-hairline"></div>
 			{/* @ts-expect-error */}
-			<div class="solid-sheet-bottomsheet-content" inert={only(state() === "closed")}>
+			<div class="bottomsheet-content" inert={only(state() === "closed")}>
 				{props.children}
 			</div>
 		</div>

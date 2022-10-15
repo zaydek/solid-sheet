@@ -1,7 +1,7 @@
 import "./theming.css"
 
 import { createScreenVars } from "./utils"
-createScreenVars({ prefix: "solid-sheet", delimiter: "-" })
+createScreenVars()
 
 export * from "./bottomsheet"
 export * from "./sidesheet"
