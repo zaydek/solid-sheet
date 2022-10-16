@@ -17,12 +17,12 @@ export function Bottomsheet(props: ParentProps<{
 	const [state, setState] = "initialState" in props
 		? createSignal(props.initialState ?? "closed")
 		: [() => props.state, props.setState]
-	const [pointerDown, setPointerDown] = createSignal<undefined | true>()
+	const [pointerDown, setPointerDown] = createSignal<true>()
 	const [pointerOffset, setPointerOffset] = createSignal<number>()
 	const [p1, setP1] = createSignal<number>()
 	const [p2, setP2] = createSignal<number>()
 
-	const [transition, setTransition] = createSignal<undefined | true>()
+	const [transition, setTransition] = createSignal<true>()
 
 	function forceState(state: BottomsheetState) {
 		batch(() => {
@@ -82,15 +82,13 @@ export function Bottomsheet(props: ParentProps<{
 				setTransition(true)
 			})
 		}
-		document.addEventListener("pointerdown",  handlePointerDown, false)
-		document.addEventListener("pointermove",  handlePointerMove, false)
-		document.addEventListener("pointerup",    handlePointerUp,   false)
-		//// document.addEventListener("pointerleave", handlePointerUp,   false)
+		document.addEventListener("pointerdown", handlePointerDown, false)
+		document.addEventListener("pointermove", handlePointerMove, false)
+		document.addEventListener("pointerup",   handlePointerUp,   false)
 		onCleanup(() => {
-			document.removeEventListener("pointerdown",  handlePointerDown, false)
-			document.removeEventListener("pointermove",  handlePointerMove, false)
-			document.removeEventListener("pointerup",    handlePointerUp,   false)
-			//// document.removeEventListener("pointerleave", handlePointerUp,   false)
+			document.removeEventListener("pointerdown", handlePointerDown, false)
+			document.removeEventListener("pointermove", handlePointerMove, false)
+			document.removeEventListener("pointerup",   handlePointerUp,   false)
 		})
 	})
 

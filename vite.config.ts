@@ -7,9 +7,6 @@ export default defineConfig({
 			hot: false,
 		}),
 	],
-	server: {
-		port: 5050,
-	},
 	build: {
 		target: "esnext",
 	},
