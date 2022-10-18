@@ -35,7 +35,7 @@ export function Bottomsheet(props: ParentProps<{
 		})
 	}
 
-	// Synchronize state=* and transition=true
+	// Synchronize transition
 	if (!("initialState" in props)) {
 		createEffect(on(state, () => {
 			if (!transition()) {

@@ -49,7 +49,7 @@
 	place-items: center;
 }
 .bottomsheet-draggable:hover { cursor: grab; }
-:root:has(.bottomsheet-draggable:active) { cursor: grab; }
+:root:has(.bottomsheet-draggable:active) { cursor: grabbing; }
 
 /**************************************/
 
