@@ -2,7 +2,7 @@
 	"name": "solid-sheet",
 	"description": "Responsive Bottomsheet and Sidesheet Components for SolidJS",
 	"license": "MIT",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"main": "lib/index.tsx",
 	"scripts": {
 		"start": "vite",
