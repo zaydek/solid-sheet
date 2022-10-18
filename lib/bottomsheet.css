@@ -48,8 +48,9 @@
 	display: grid;
 	place-items: center;
 }
-.bottomsheet-draggable:hover { cursor: grab; }
-:root:has(.bottomsheet-draggable:active) { cursor: grabbing; }
+.bottomsheet-draggable { cursor: grab; }
+:root:has(.bottomsheet-draggable:active) { cursor: grabbing; }                        /* Use both */
+:root:has(.bottomsheet-draggable:active) .bottomsheet-draggable { cursor: grabbing; } /* Use both */
 
 /**************************************/
 

@@ -48,8 +48,9 @@
 	display: grid;
 	place-items: center;
 }
-.sidesheet-draggable:hover { cursor: grab; }
-:root:has(.sidesheet-draggable:active) { cursor: grabbing; }
+.sidesheet-draggable { cursor: grab; }
+:root:has(.sidesheet-draggable:active) { cursor: grabbing; }                      /* Use both */
+:root:has(.sidesheet-draggable:active) .sidesheet-draggable { cursor: grabbing; } /* Use both */
 
 /**************************************/
 
