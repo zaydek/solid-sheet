@@ -15,7 +15,7 @@ export function Sidesheet(props: ParentProps<{
 	const [draggable, setDraggable] = createSignal<HTMLElement>()
 
 	const [state, setState] = "initialState" in props
-		? createSignal(props.initialState ?? "closed")
+		? createSignal(props.initialState)
 		: [() => props.state, props.setState]
 	const [pointerDown, setPointerDown] = createSignal<true>()
 	const [pointerOffset, setPointerOffset] = createSignal<number>()
@@ -35,7 +35,7 @@ export function Sidesheet(props: ParentProps<{
 		})
 	}
 
-	// Synchronize state=* and transition=true
+	// Synchronize transition
 	if (!("initialState" in props)) {
 		createEffect(on(state, () => {
 			if (!transition()) {
