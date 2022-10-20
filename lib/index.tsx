@@ -1,7 +1,7 @@
 import "./theming.css"
 
-import { createScreenVars } from "./utils"
-createScreenVars()
+import { createScreenEffect } from "./utils"
+createScreenEffect()
 
 export * from "./bottomsheet"
 export * from "./sidesheet"

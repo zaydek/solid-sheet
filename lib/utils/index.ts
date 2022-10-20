@@ -11,7 +11,20 @@ export function cx(...args: any[]) {
 	return className
 }
 
-export function createScreenVars() {
+// Returns whether an element has a class name
+export function hasClass(element: HTMLElement, className: string) {
+  return element.classList.contains(className)
+}
+
+// Returns whether an element has a property name
+export function hasStyle(element: HTMLElement, propertyName: string) {
+  return element.style.getPropertyValue(propertyName) !== "" // Zero value
+}
+
+export function createScreenEffect() {
+	const root = document.documentElement
+	if (hasStyle(root, "--screen-y") || hasStyle(root, "--screen-x")) { return }
+
 	createRoot(dispose => {
 		onMount(() => {
 			function handleResize(e?: UIEvent) {
@@ -32,6 +45,8 @@ export function createScreenVars() {
 		})
 		onCleanup(dispose)
 	})
+
+	return void 0
 }
 
 export function only<T>(value: T) {

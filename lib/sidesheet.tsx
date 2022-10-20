@@ -3,7 +3,10 @@ import "./sidesheet.css"
 import { batch, createEffect, createSignal, on, onCleanup, onMount, ParentProps, Setter } from "solid-js"
 import { cx, only, round } from "./utils"
 
-export type SidesheetState = "closed" | "open" | "expanded"
+export type SidesheetState =
+	| "closed"
+	| "open"
+	| "expanded"
 
 export function Sidesheet(props: ParentProps<{
 	initialState: SidesheetState // Uncontrolled API
@@ -19,8 +22,8 @@ export function Sidesheet(props: ParentProps<{
 		: [() => props.state, props.setState]
 	const [pointerDown, setPointerDown] = createSignal<true>()
 	const [pointerOffset, setPointerOffset] = createSignal<number>()
-	const [p1, setP1] = createSignal<number>()
-	const [p2, setP2] = createSignal<number>()
+	const [point1, setPoint1] = createSignal<number>()
+	const [point2, setPoint2] = createSignal<number>()
 
 	const [transition, setTransition] = createSignal<true>()
 
@@ -29,8 +32,8 @@ export function Sidesheet(props: ParentProps<{
 			setState(state)
 			setPointerDown()
 			setPointerOffset()
-			setP1()
-			setP2()
+			setPoint1()
+			setPoint2()
 			setTransition(true)
 		})
 	}
@@ -54,18 +57,18 @@ export function Sidesheet(props: ParentProps<{
 				const clientRect = draggable()!.getBoundingClientRect()
 				setPointerDown(true)
 				setPointerOffset(round(clientRect.right - e.clientX, { precision: 1 }))
-				setP1(round(e.clientX, { precision: 1 }))
+				setPoint1(round(e.clientX, { precision: 1 }))
 				setTransition()
 			})
 		}
 		function handlePointerMove(e: PointerEvent) {
 			if (!pointerDown()) { return }
-			setP2(round(e.clientX, { precision: 1 }))
+			setPoint2(round(e.clientX, { precision: 1 }))
 		}
 		function handlePointerUp(e: PointerEvent) {
 			if (!pointerDown()) { return }
 			batch(() => {
-				const delta = (p2()! + pointerOffset()!) - (p1()! + pointerOffset()!)
+				const delta = (point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)
 				if (state() === "closed") {
 					if (delta < -384) {
 						setState("expanded")
@@ -87,8 +90,8 @@ export function Sidesheet(props: ParentProps<{
 				}
 				setPointerDown()
 				setPointerOffset()
-				setP1()
-				setP2()
+				setPoint1()
+				setPoint2()
 				setTransition(true)
 			})
 		}
@@ -114,9 +117,9 @@ export function Sidesheet(props: ParentProps<{
 			class={cx(`sidesheet is-${state()} ${transition() ? "is-transition" : ""}`)}
 			style={{
 				"--__drag-translate-x":
-					(!pointerOffset() || !p1() || !p2())
+					(!pointerOffset() || !point1() || !point2())
 						? "0px"
-						: `${(p2()! + pointerOffset()!) - (p1()! + pointerOffset()!)}px`,
+						: `${(point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)}px`,
 			}}
 			onTransitionEnd={e => setTransition()}
 		>
