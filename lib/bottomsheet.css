@@ -6,7 +6,7 @@
 .bottomsheet-backdrop:has(+ .bottomsheet.is-closed) { background-color: transparent; }
 .bottomsheet-backdrop:has(+ .bottomsheet.is-open)   { background-color: hsl(0 0% 0% / 25%); }
 .bottomsheet-backdrop:has(+ .bottomsheet.is-transition) {
-	transition: background-color var(--sheet-transition-duration) var(--sheet-transition-timing-function);
+	transition: background-color var(--sheet-backdrop-transition-duration) var(--sheet-transition-timing-function);
 }
 
 /**************************************/

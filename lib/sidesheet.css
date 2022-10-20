@@ -7,7 +7,7 @@
 .sidesheet-backdrop:has(+ .sidesheet.is-open)     { background-color: transparent; }
 .sidesheet-backdrop:has(+ .sidesheet.is-expanded) { background-color: var(--sheet-backdrop-background-color); }
 .sidesheet-backdrop:has(+ .sidesheet.is-transition) {
-	transition: background-color var(--sheet-transition-duration) var(--sheet-transition-timing-function);
+	transition: background-color var(--sheet-backdrop-transition-duration) var(--sheet-transition-timing-function);
 }
 
 /**************************************/
