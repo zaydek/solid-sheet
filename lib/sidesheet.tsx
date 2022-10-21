@@ -14,7 +14,6 @@ export function Sidesheet(props: ParentProps<{
 	state:    SidesheetState // Controlled API
 	setState: Setter<SidesheetState>
 }>) {
-	const [backdrop, setBackdrop] = createSignal<HTMLElement>()
 	const [draggable, setDraggable] = createSignal<HTMLElement>()
 
 	const [state, setState] = "initialState" in props
@@ -50,8 +49,7 @@ export function Sidesheet(props: ParentProps<{
 	onMount(() => {
 		function handlePointerDown(e: PointerEvent) {
 			if (!(e.button === 0 || e.buttons === 1)) { return }
-			if (!(backdrop()!.contains(e.target as HTMLElement) ||
-				draggable()!.contains(e.target as HTMLElement))) { return }
+			if (!draggable()!.contains(e.target as HTMLElement)) { return }
 			e.preventDefault() // COMPAT/Safari: Prevent cursor from changing
 			batch(() => {
 				const clientRect = draggable()!.getBoundingClientRect()
@@ -107,7 +105,6 @@ export function Sidesheet(props: ParentProps<{
 
 	return <>
 		<div
-			ref={setBackdrop}
 			class="sidesheet-backdrop"
 			onClick={e => forceState("open")}
 			// @ts-expect-error
@@ -117,9 +114,9 @@ export function Sidesheet(props: ParentProps<{
 			class={cx(`sidesheet is-${state()} ${transition() ? "is-transition" : ""}`)}
 			style={{
 				"--__drag-translate-x":
-					(!pointerOffset() || !point1() || !point2())
-						? "0px"
-						: `${(point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)}px`,
+					(pointerOffset() !== undefined && point1() !== undefined && point2() !== undefined)
+						? `${(point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)}px`
+						: "0px",
 			}}
 			onTransitionEnd={e => setTransition()}
 		>

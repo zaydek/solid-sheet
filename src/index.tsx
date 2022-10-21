@@ -7,16 +7,16 @@ import { Bottomsheet, BottomsheetState, Sidesheet, SidesheetState } from "../lib
 //// mq.addEventListener("change", e => setResponsive(e.matches))
 
 function App() {
-	const [bottomsheetState, setBottomsheetState] = createSignal<BottomsheetState>("closed")
-	const [sidesheetState, setSidesheetState] = createSignal<SidesheetState>("closed")
+	const [bottomsheet, setBottomsheet] = createSignal<BottomsheetState>("closed")
+	const [sidesheet, setSidesheet] = createSignal<SidesheetState>("open")
 
 	onMount(() => {
 		function handleKeyDown(e: KeyboardEvent) {
 			if (e.key === "b") {
-				if (bottomsheetState() === "closed") {
-					setBottomsheetState("open")
-				} else if (bottomsheetState() === "open") {
-					setBottomsheetState("closed")
+				if (bottomsheet() === "closed") {
+					setBottomsheet("open")
+				} else if (bottomsheet() === "open") {
+					setBottomsheet("closed")
 				}
 			}
 		}
@@ -27,12 +27,12 @@ function App() {
 	onMount(() => {
 		function handleKeyDown(e: KeyboardEvent) {
 			if (e.key === "s") {
-				if (sidesheetState() === "closed") {
-					setSidesheetState("open")
-				} else if (sidesheetState() === "open") {
-					setSidesheetState("expanded")
-				} else if (sidesheetState() === "expanded") {
-					setSidesheetState("closed")
+				if (sidesheet() === "closed") {
+					setSidesheet("open")
+				} else if (sidesheet() === "open") {
+					setSidesheet("expanded")
+				} else if (sidesheet() === "expanded") {
+					setSidesheet("closed")
 				}
 			}
 		}
@@ -41,10 +41,10 @@ function App() {
 	})
 
 	return <>
-		<Bottomsheet state={bottomsheetState()} setState={setBottomsheetState}>
+		<Bottomsheet state={bottomsheet()} setState={setBottomsheet}>
 			<div>Hello, world!</div>
 		</Bottomsheet>
-		<Sidesheet state={sidesheetState()} setState={setSidesheetState}>
+		<Sidesheet state={sidesheet()} setState={setSidesheet}>
 			<div>
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
