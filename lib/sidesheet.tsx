@@ -109,7 +109,7 @@ export function Sidesheet(props: ParentProps<{
 		<div
 			ref={setBackdrop}
 			class="sidesheet-backdrop"
-			onClick={e => forceState("closed")}
+			onClick={e => forceState("open")}
 			// @ts-expect-error
 			inert={only(state() === "closed" || state() === "open")}
 		></div>
