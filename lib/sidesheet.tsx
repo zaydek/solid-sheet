@@ -110,13 +110,13 @@ export function Sidesheet(props: ParentProps<{
 			// @ts-expect-error
 			inert={only(state() === "closed" || state() === "open")}
 		></div>
-		<div
-			class={cx(`sidesheet is-${state()} ${transition() ? "is-transition" : ""}`)}
+		<aside
+			class={cx(`sidesheet ${state()} ${transition() ? "transition" : ""}`)}
 			style={{
 				"--__drag-translate-x":
 					(pointerOffset() !== undefined && point1() !== undefined && point2() !== undefined)
 						? `${(point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)}px`
-						: "0px",
+						: "0px", // Use px because of calc
 			}}
 			onTransitionEnd={e => setTransition()}
 		>
@@ -148,6 +148,6 @@ export function Sidesheet(props: ParentProps<{
 					{props.children}
 				</div>
 			</div>
-		</div>
+		</aside>
 	</>
 }

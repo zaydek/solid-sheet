@@ -3,9 +3,9 @@
 	z-index: calc(var(--sheet-z-index) - 10);
 	inset: 0;
 }
-.bottomsheet-backdrop:has(+ .bottomsheet.is-closed) { background-color: transparent; }
-.bottomsheet-backdrop:has(+ .bottomsheet.is-open)   { background-color: hsl(0 0% 0% / 25%); }
-.bottomsheet-backdrop:has(+ .bottomsheet.is-transition) {
+.bottomsheet-backdrop:has(+ .bottomsheet.closed) { background-color: transparent; }
+.bottomsheet-backdrop:has(+ .bottomsheet.open)   { background-color: hsl(0 0% 0% / 25%); }
+.bottomsheet-backdrop:has(+ .bottomsheet.transition) {
 	transition: background-color var(--sheet-backdrop-transition-duration) var(--sheet-transition-timing-function);
 }
 
@@ -27,15 +27,15 @@
 	transform: translateY(calc(var(--__screen-y) + var(--__translate-y) + var(--__drag-translate-y)));
 	will-change: transform;
 }
-.bottomsheet.is-closed {
+.bottomsheet.closed {
 	--__screen-y: var(--screen-y);
 	--__translate-y: -1 * var(--sheet-draggable-size);
 }
-.bottomsheet.is-open   {
+.bottomsheet.open   {
 	--__screen-y: 0px;
 	--__translate-y: var(--sheet-draggable-size);
 }
-.bottomsheet.is-transition {
+.bottomsheet.transition {
 	transition: transform var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
 
@@ -61,7 +61,7 @@
 	background-color: var(--sheet-drag-indicator-background-color);
 }
 .bottomsheet-draggable:active .bottomsheet-drag-indicator {
-	background-color: var(--sheet-drag-indicator-is-active-background-color);
+	background-color: var(--sheet-drag-indicator-active-background-color);
 }
 
 /**************************************/

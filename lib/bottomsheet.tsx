@@ -99,13 +99,13 @@ export function Bottomsheet(props: ParentProps<{
 			// @ts-expect-error
 			inert={only(state() === "closed")}
 		></div>
-		<div
-			class={cx(`bottomsheet is-${state()} ${transition() ? "is-transition" : ""}`)}
+		<aside
+			class={cx(`bottomsheet ${state()} ${transition() ? "transition" : ""}`)}
 			style={{
 				"--__drag-translate-y":
 					(pointerOffset() !== undefined && point1() !== undefined && point2() !== undefined)
 						? `${(point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)}px`
-						: "0px",
+						: "0px", // Use px because of calc
 			}}
 			onTransitionEnd={e => setTransition()}
 		>
@@ -128,6 +128,6 @@ export function Bottomsheet(props: ParentProps<{
 			<div class="bottomsheet-content" inert={only(state() === "closed")}>
 				{props.children}
 			</div>
-		</div>
+		</aside>
 	</>
 }

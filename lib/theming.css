@@ -6,7 +6,7 @@
 	--sheet-card-box-shadow: 0 0 0 4px hsl(0 0% 0% / 25%);
 	--sheet-card-hairline-background-color: hsl(0 0% 90%);
 	--sheet-drag-indicator-background-color: hsl(0 0% 50%);
-	--sheet-drag-indicator-is-active-background-color: hsl(0 0% 25%);
+	--sheet-drag-indicator-active-background-color: hsl(0 0% 25%);
 	--sheet-drag-indicator-size-aspect-ratio: 12;
 	--sheet-drag-indicator-size: 4px;
 	--sheet-draggable-size: 40px;

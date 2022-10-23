@@ -3,10 +3,10 @@
 	z-index: calc(var(--sheet-z-index) - 10);
 	inset: 0;
 }
-.sidesheet-backdrop:has(+ .sidesheet.is-closed)   { background-color: transparent; }
-.sidesheet-backdrop:has(+ .sidesheet.is-open)     { background-color: transparent; }
-.sidesheet-backdrop:has(+ .sidesheet.is-expanded) { background-color: var(--sheet-backdrop-background-color); }
-.sidesheet-backdrop:has(+ .sidesheet.is-transition) {
+.sidesheet-backdrop:has(+ .sidesheet.closed)   { background-color: transparent; }
+.sidesheet-backdrop:has(+ .sidesheet.open)     { background-color: transparent; }
+.sidesheet-backdrop:has(+ .sidesheet.expanded) { background-color: var(--sheet-backdrop-background-color); }
+.sidesheet-backdrop:has(+ .sidesheet.transition) {
 	transition: background-color var(--sheet-backdrop-transition-duration) var(--sheet-transition-timing-function);
 }
 
@@ -28,10 +28,10 @@
 	display: flex;
 	flex-direction: row;
 }
-.sidesheet.is-closed   { --__translate-x: 768px; }
-.sidesheet.is-open     { --__translate-x: 384px; }
-.sidesheet.is-expanded { --__translate-x: max(-1 * (var(--screen-x) - 768px - var(--sheet-draggable-size)), 0px); }
-.sidesheet.is-transition {
+.sidesheet.closed   { --__translate-x: 768px; }
+.sidesheet.open     { --__translate-x: 384px; }
+.sidesheet.expanded { --__translate-x: max(-1 * (var(--screen-x) - 768px - var(--sheet-draggable-size)), 0px); }
+.sidesheet.transition {
 	transition: transform var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
 
@@ -61,7 +61,7 @@
 	background-color: var(--sheet-drag-indicator-background-color);
 }
 .sidesheet-draggable:active .sidesheet-drag-indicator {
-	background-color: var(--sheet-drag-indicator-is-active-background-color);
+	background-color: var(--sheet-drag-indicator-active-background-color);
 }
 
 /**************************************/
@@ -76,5 +76,5 @@
 .sidesheet-content {
 	overflow-y: auto;
 }
-.sidesheet:is(.is-closed, .is-open) .sidesheet-content { width: 384px; }
-.sidesheet.is-expanded .sidesheet-content { width: min(var(--screen-x) - var(--sheet-draggable-size), 768px); }
+.sidesheet:is(.closed, .open) .sidesheet-content { width: 384px; }
+.sidesheet.expanded .sidesheet-content { width: min(var(--screen-x) - var(--sheet-draggable-size), 768px); }
