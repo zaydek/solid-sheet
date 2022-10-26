@@ -47,6 +47,9 @@
 	/* Flow */
 	display: grid;
 	place-items: center;
+
+	/* Only enable vertical panning */
+	touch-action: pan-y;
 }
 .bottomsheet-draggable { cursor: grab; }
 :root:has(.bottomsheet-draggable:active) { cursor: grabbing; }                        /* Use both */
