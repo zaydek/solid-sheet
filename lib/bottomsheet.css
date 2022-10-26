@@ -48,10 +48,11 @@
 	display: grid;
 	place-items: center;
 
-	/* Only enable vertical panning */
+	cursor: grab;
+	-webkit-user-select: none;
+	user-select: none;
 	touch-action: pan-y;
 }
-.bottomsheet-draggable { cursor: grab; }
 :root:has(.bottomsheet-draggable:active) { cursor: grabbing; }                        /* Use both */
 :root:has(.bottomsheet-draggable:active) .bottomsheet-draggable { cursor: grabbing; } /* Use both */
 

@@ -48,10 +48,11 @@
 	display: grid;
 	place-items: center;
 
-	/* Only enable horizontal panning */
+	cursor: grab;
+	-webkit-user-select: none;
+	user-select: none;
 	touch-action: pan-x;
 }
-.sidesheet-draggable { cursor: grab; }
 :root:has(.sidesheet-draggable:active) { cursor: grabbing; }                      /* Use both */
 :root:has(.sidesheet-draggable:active) .sidesheet-draggable { cursor: grabbing; } /* Use both */
 
