@@ -68,7 +68,7 @@ export function Sidesheet(props: ParentProps<{
 			batch(() => {
 				const delta = (point2()! + pointerOffset()!) - (point1()! + pointerOffset()!)
 				if (state() === "closed") {
-					if (delta < -384) {
+					if (delta < -448) {
 						setState("expanded")
 					} else if (delta < 0) {
 						setState("open")
@@ -80,7 +80,7 @@ export function Sidesheet(props: ParentProps<{
 						setState("closed")
 					}
 				} else if (state() === "expanded") {
-					if (delta > 384) {
+					if (delta > 672 - 448) {
 						setState("closed")
 					} else if (delta > 0) {
 						setState("open")

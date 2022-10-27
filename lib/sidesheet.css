@@ -20,7 +20,7 @@
 	position: fixed;
 	z-index: var(--sheet-z-index);
 	inset: 0 0 0 auto;
-	width: calc(768px + var(--sheet-draggable-size));
+	width: calc(672px + var(--sheet-draggable-size));
 	transform: translateX(calc(var(--__translate-x) + var(--__drag-translate-x)));
 	will-change: transform;
 
@@ -28,9 +28,9 @@
 	display: flex;
 	flex-direction: row;
 }
-.sidesheet.closed   { --__translate-x: 768px; }
-.sidesheet.open     { --__translate-x: 384px; }
-.sidesheet.expanded { --__translate-x: max(-1 * (var(--screen-x) - 768px - var(--sheet-draggable-size)), 0px); }
+.sidesheet.closed   { --__translate-x: 672px; }
+.sidesheet.open     { --__translate-x: 672px - 448px; }
+.sidesheet.expanded { --__translate-x: max(-1 * (var(--screen-x) - 672px - var(--sheet-draggable-size)), 0px); }
 .sidesheet.transition {
 	transition: transform var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
@@ -80,5 +80,5 @@
 .sidesheet-content {
 	overflow-y: auto;
 }
-.sidesheet:is(.closed, .open) .sidesheet-content { width: 384px; }
-.sidesheet.expanded .sidesheet-content { width: min(var(--screen-x) - var(--sheet-draggable-size), 768px); }
+.sidesheet:is(.closed, .open) .sidesheet-content { width: 448px; }
+.sidesheet.expanded .sidesheet-content { width: min(var(--screen-x) - var(--sheet-draggable-size), 672px); }
