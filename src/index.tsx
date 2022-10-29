@@ -41,10 +41,58 @@ function App() {
 	})
 
 	return <>
+		<style>{`
+			:root {
+				position: fixed;
+				inset: 0;
+				overflow: hidden;
+			}
+		`}</style>
 		<Bottomsheet state={bottomsheet()} setState={setBottomsheet}>
 			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
+			<div>Hello, world!</div>
 		</Bottomsheet>
-		<Sidesheet state={sidesheet()} setState={setSidesheet}>
+		{/* <Sidesheet state={sidesheet()} setState={setSidesheet}>
 			<div>
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
@@ -52,7 +100,7 @@ function App() {
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 			</div>
-		</Sidesheet>
+		</Sidesheet> */}
 	</>
 }
 

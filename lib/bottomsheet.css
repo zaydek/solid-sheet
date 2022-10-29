@@ -80,9 +80,8 @@ listening to the presence of the property */
 .bottomsheet-content {
 	height: calc(
 		var(--screen-y) -
-		var(--sheet-draggable-size) -
-		1px -
-		var(--sheet-draggable-size)
+		var(--sheet-draggable-size) * 2 -
+		1px
 	);
 	overflow-y: auto;
 }
