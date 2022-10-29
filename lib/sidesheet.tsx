@@ -111,7 +111,7 @@ export function Sidesheet(props: ParentProps<{
 			inert={only(state() === "closed" || state() === "open")}
 		></div>
 		<aside
-			class={cx(`sidesheet ${state()} ${transition() ? "transition" : ""}`)}
+			class={cx(`sidesheet ${`state-${state()}`} ${transition() ? "state-transition" : ""}`)}
 			style={{
 				"--__drag-translate-x":
 					(pointerOffset() !== undefined && point1() !== undefined && point2() !== undefined)

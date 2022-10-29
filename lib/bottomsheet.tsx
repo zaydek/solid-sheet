@@ -100,7 +100,7 @@ export function Bottomsheet(props: ParentProps<{
 			inert={only(state() === "closed")}
 		></div>
 		<aside
-			class={cx(`bottomsheet ${state()} ${transition() ? "transition" : ""}`)}
+			class={cx(`bottomsheet ${`state-${state()}`} ${transition() ? "state-transition" : ""}`)}
 			style={{
 				"--__drag-translate-y":
 					(pointerOffset() !== undefined && point1() !== undefined && point2() !== undefined)

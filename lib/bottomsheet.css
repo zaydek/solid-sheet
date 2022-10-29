@@ -3,20 +3,18 @@
 	z-index: calc(var(--sheet-z-index) - 10);
 	inset: 0;
 }
-.bottomsheet-backdrop:has(+ .bottomsheet.closed) { background-color: transparent; }
-.bottomsheet-backdrop:has(+ .bottomsheet.open)   { background-color: hsl(0 0% 0% / 25%); }
-.bottomsheet-backdrop:has(+ .bottomsheet.transition) {
+.bottomsheet-backdrop:has(+ .bottomsheet.state-closed) { background-color: transparent; }
+.bottomsheet-backdrop:has(+ .bottomsheet.state-open)   { background-color: hsl(0 0% 0% / 25%); }
+.bottomsheet-backdrop:has(+ .bottomsheet.state-transition) {
 	transition: background-color var(--sheet-backdrop-transition-duration) var(--sheet-transition-timing-function);
 }
 
 /**************************************/
 
 .bottomsheet {
-	/* Runtime values */
 	--__screen-y: var(--screen-y);
 	--__translate-y: 0px;
 	--__drag-translate-y: 0px;
-
 	position: fixed;
 	z-index: var(--sheet-z-index);
 	inset: 0 0 auto 0;
@@ -25,17 +23,16 @@
 	background-color: var(--sheet-card-background-color);
 	box-shadow: var(--sheet-card-box-shadow);
 	transform: translateY(calc(var(--__screen-y) + var(--__translate-y) + var(--__drag-translate-y)));
-	will-change: transform;
 }
-.bottomsheet.closed {
+.bottomsheet.state-closed {
 	--__screen-y: var(--screen-y);
 	--__translate-y: -1 * var(--sheet-draggable-size);
 }
-.bottomsheet.open   {
+.bottomsheet.state-open   {
 	--__screen-y: 0px;
 	--__translate-y: var(--sheet-draggable-size);
 }
-.bottomsheet.transition {
+.bottomsheet.state-transition {
 	transition: transform var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
 
@@ -53,8 +50,8 @@
 	user-select: none;
 	touch-action: pan-y;
 }
-:root:has(.bottomsheet-draggable:active) { cursor: grabbing; }                        /* Use both */
-:root:has(.bottomsheet-draggable:active) .bottomsheet-draggable { cursor: grabbing; } /* Use both */
+:root:has(.bottomsheet-draggable:active),
+:root:has(.bottomsheet-draggable:active) .bottomsheet-draggable { cursor: grabbing; }
 
 /**************************************/
 

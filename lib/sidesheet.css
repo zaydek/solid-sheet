@@ -3,35 +3,32 @@
 	z-index: calc(var(--sheet-z-index) - 10);
 	inset: 0;
 }
-.sidesheet-backdrop:has(+ .sidesheet.closed)   { background-color: transparent; }
-.sidesheet-backdrop:has(+ .sidesheet.open)     { background-color: transparent; }
-.sidesheet-backdrop:has(+ .sidesheet.expanded) { background-color: var(--sheet-backdrop-background-color); }
-.sidesheet-backdrop:has(+ .sidesheet.transition) {
+.sidesheet-backdrop:has(+ .sidesheet.state-closed)   { background-color: transparent; }
+.sidesheet-backdrop:has(+ .sidesheet.state-open)     { background-color: transparent; }
+.sidesheet-backdrop:has(+ .sidesheet.state-expanded) { background-color: var(--sheet-backdrop-background-color); }
+.sidesheet-backdrop:has(+ .sidesheet.state-transition) {
 	transition: background-color var(--sheet-backdrop-transition-duration) var(--sheet-transition-timing-function);
 }
 
 /**************************************/
 
 .sidesheet {
-	/* Runtime values */
 	--__translate-x: 0px;
 	--__drag-translate-x: 0px;
-
 	position: fixed;
 	z-index: var(--sheet-z-index);
 	inset: 0 0 0 auto;
 	width: calc(672px + var(--sheet-draggable-size));
 	transform: translateX(calc(var(--__translate-x) + var(--__drag-translate-x)));
-	will-change: transform;
 
 	/* Flow */
 	display: flex;
 	flex-direction: row;
 }
-.sidesheet.closed   { --__translate-x: 672px; }
-.sidesheet.open     { --__translate-x: 672px - 448px; }
-.sidesheet.expanded { --__translate-x: max(-1 * (var(--screen-x) - 672px - var(--sheet-draggable-size)), 0px); }
-.sidesheet.transition {
+.sidesheet.state-closed   { --__translate-x: 672px; }
+.sidesheet.state-open     { --__translate-x: 672px - 448px; }
+.sidesheet.state-expanded { --__translate-x: max(-1 * (var(--screen-x) - 672px - var(--sheet-draggable-size)), 0px); }
+.sidesheet.state-transition {
 	transition: transform var(--sheet-transition-duration) var(--sheet-transition-timing-function);
 }
 
@@ -53,8 +50,8 @@
 	user-select: none;
 	touch-action: pan-x;
 }
-:root:has(.sidesheet-draggable:active) { cursor: grabbing; }                      /* Use both */
-:root:has(.sidesheet-draggable:active) .sidesheet-draggable { cursor: grabbing; } /* Use both */
+:root:has(.sidesheet-draggable:active),
+:root:has(.sidesheet-draggable:active) .sidesheet-draggable { cursor: grabbing; }
 
 /**************************************/
 
@@ -80,5 +77,5 @@
 .sidesheet-content {
 	overflow-y: auto;
 }
-.sidesheet:is(.closed, .open) .sidesheet-content { width: 448px; }
-.sidesheet.expanded .sidesheet-content { width: min(var(--screen-x) - var(--sheet-draggable-size), 672px); }
+.sidesheet:is(.state-closed, .state-open) .sidesheet-content { width: 448px; }
+.sidesheet.state-expanded .sidesheet-content { width: min(var(--screen-x) - var(--sheet-draggable-size), 672px); }
