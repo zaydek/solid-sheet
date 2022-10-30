@@ -1,4 +1,5 @@
 import "./theming.css"
+import "./common.css"
 
 import { createScreenEffect } from "./utils"
 createScreenEffect()

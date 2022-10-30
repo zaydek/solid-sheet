@@ -1,0 +1,14 @@
+/* This code is specifically implemented to support bottomsheet panning.
+Dragging the bottomsheet interferes with body scrolling on iOS Safari. Therefore
+disable <body> scrolling on and enable <main> scrolling. */
+
+/* Disable <body> scrolling */
+@media (hover: none) { :root:has(.bottomsheet) {
+	position: fixed;
+	inset: 0;
+	overflow: hidden;
+} }
+/* Disable body scrolling when bottomsheet=open or sidesheet=expanded */
+:root:has(:is(.bottomsheet.state-open, .sidesheet.state-expanded)) body {
+	overflow-y: hidden;
+}
