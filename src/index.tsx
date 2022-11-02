@@ -48,110 +48,8 @@ function App() {
 				overflow: hidden;
 			}
 		`}</style> */}
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<div>Hello, world!</div>
-		<Bottomsheet state={bottomsheet()} setState={setBottomsheet}>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-			<div>Hello, world!</div>
-		</Bottomsheet>
-		{/* <Sidesheet state={sidesheet()} setState={setSidesheet}>
+		<Bottomsheet state={bottomsheet()} setState={setBottomsheet} />
+		<Sidesheet state={sidesheet()} setState={setSidesheet}>
 			<div>
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
@@ -159,7 +57,7 @@ function App() {
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 				Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!
 			</div>
-		</Sidesheet> */}
+		</Sidesheet>
 	</>
 }
 

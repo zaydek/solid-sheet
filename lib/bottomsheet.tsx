@@ -13,7 +13,8 @@ export function Bottomsheet(props: ParentProps<{
 	state:    BottomsheetState // Controlled API
 	setState: Setter<BottomsheetState>
 }>) {
-	const [draggable, setDraggable] = createSignal<HTMLElement>()
+	const [backdropRef, setBackdropRef] = createSignal<HTMLElement>()
+	const [draggableRef, setDraggableRef] = createSignal<HTMLElement>()
 
 	const [state, setState] = "initialState" in props
 		? createSignal(props.initialState)
@@ -48,10 +49,11 @@ export function Bottomsheet(props: ParentProps<{
 	onMount(() => {
 		function handlePointerDown(e: PointerEvent) {
 			if (!(e.button === 0 || e.buttons === 1)) { return }
-			if (!draggable()!.contains(e.target as HTMLElement)) { return }
+			if (!draggableRef()!.contains(e.target as HTMLElement) &&
+				!backdropRef()!.contains(e.target as HTMLElement)) { return }
 			e.preventDefault() // COMPAT/Safari: Prevent cursor from changing
 			batch(() => {
-				const clientRect = draggable()!.getBoundingClientRect()
+				const clientRect = draggableRef()!.getBoundingClientRect()
 				setPointerDown(true)
 				setPointerOffset(round(clientRect.top - e.clientY, { precision: 1 }))
 				setPoint1(round(e.clientY, { precision: 1 }))
@@ -94,6 +96,7 @@ export function Bottomsheet(props: ParentProps<{
 
 	return <>
 		<div
+			ref={setBackdropRef}
 			class="bottomsheet-backdrop"
 			onClick={e => forceState("closed")}
 			// @ts-expect-error
@@ -110,7 +113,7 @@ export function Bottomsheet(props: ParentProps<{
 			onTransitionEnd={e => setTransition()}
 		>
 			<div
-				ref={setDraggable}
+				ref={setDraggableRef}
 				class="bottomsheet-draggable"
 				onKeyDown={e => {
 					if (e.key === "ArrowUp") {

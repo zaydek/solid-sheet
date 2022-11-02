@@ -14,7 +14,7 @@ export function Sidesheet(props: ParentProps<{
 	state:    SidesheetState // Controlled API
 	setState: Setter<SidesheetState>
 }>) {
-	const [draggable, setDraggable] = createSignal<HTMLElement>()
+	const [draggableRef, setDraggableRef] = createSignal<HTMLElement>()
 
 	const [state, setState] = "initialState" in props
 		? createSignal(props.initialState)
@@ -49,10 +49,10 @@ export function Sidesheet(props: ParentProps<{
 	onMount(() => {
 		function handlePointerDown(e: PointerEvent) {
 			if (!(e.button === 0 || e.buttons === 1)) { return }
-			if (!draggable()!.contains(e.target as HTMLElement)) { return }
+			if (!draggableRef()!.contains(e.target as HTMLElement)) { return }
 			e.preventDefault() // COMPAT/Safari: Prevent cursor from changing
 			batch(() => {
-				const clientRect = draggable()!.getBoundingClientRect()
+				const clientRect = draggableRef()!.getBoundingClientRect()
 				setPointerDown(true)
 				setPointerOffset(round(clientRect.right - e.clientX, { precision: 1 }))
 				setPoint1(round(e.clientX, { precision: 1 }))
@@ -121,7 +121,7 @@ export function Sidesheet(props: ParentProps<{
 			onTransitionEnd={e => setTransition()}
 		>
 			<div
-				ref={setDraggable}
+				ref={setDraggableRef}
 				class="sidesheet-draggable"
 				onKeyDown={e => {
 					if (e.key === "ArrowLeft") {
