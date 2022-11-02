@@ -1,5 +1,3 @@
-import "./bottomsheet.css"
-
 import { batch, createEffect, createSignal, on, onCleanup, onMount, ParentProps, Setter } from "solid-js"
 import { cx, only, round } from "./utils"
 

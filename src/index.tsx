@@ -1,3 +1,5 @@
+import "../lib/styles"
+
 import { createSignal, onCleanup, onMount } from "solid-js"
 import { render } from "solid-js/web"
 import { Bottomsheet, BottomsheetState, Sidesheet, SidesheetState } from "../lib"
